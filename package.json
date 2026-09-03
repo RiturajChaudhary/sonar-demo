@@ -1,0 +1,26 @@
+{
+  "name": "sonarqube-owasp-node-demo",
+  "version": "1.0.0",
+  "description": "Small Node.js API for SonarQube and OWASP Dependency-Check testing",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test --test-reporter=spec",
+    "test:coverage": "c8 --reporter=lcov --reporter=text npm test",
+    "sonar": "sonar-scanner",
+    "dependency-check": "dependency-check --project \"sonarqube-owasp-node-demo\" --scan . --format HTML --out reports/dependency-check --failOnCVSS 7",
+    "security": "npm audit --audit-level=high && npm run dependency-check"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "c8": "^10.1.3",
+    "supertest": "^7.1.4"
+  }
+}
